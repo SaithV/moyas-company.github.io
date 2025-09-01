@@ -6,14 +6,23 @@ const qsa = (s,o=document)=>[...o.querySelectorAll(s)];
 // ================= Mobile Nav Toggle =================
 const navToggle = qs('.nav__toggle');
 const navList = qs('.nav__list');
-navToggle?.addEventListener('click', () => {
-  const open = navList.classList.toggle('open');
+let navOverlay = qs('.nav__overlay');
+if(!navOverlay){
+  navOverlay = document.createElement('div');
+  navOverlay.className = 'nav__overlay';
+  document.body.appendChild(navOverlay);
+}
+function setNav(open){
+  navList.classList.toggle('open', open);
   navToggle.setAttribute('aria-expanded', open);
   navToggle.classList.toggle('active', open);
-});
-qsa('.nav__list a').forEach(a => a.addEventListener('click', ()=>{
-  if(window.innerWidth < 880) navList.classList.remove('open');
-}));
+  document.body.classList.toggle('nav-open', open);
+  navOverlay.classList.toggle('show', open);
+}
+navToggle?.addEventListener('click', () => setNav(!navList.classList.contains('open')));
+navOverlay.addEventListener('click', ()=> setNav(false));
+document.addEventListener('keyup', e=> { if(e.key==='Escape') setNav(false); });
+qsa('.nav__list a').forEach(a => a.addEventListener('click', ()=>{ if(window.innerWidth < 880) setNav(false); }));
 
 // ================= Year =================
 qs('#year').textContent = new Date().getFullYear();

@@ -66,8 +66,11 @@ a { color: var(--brand); text-decoration:none; }
 .nav__toggle span { width:26px; height:2px; background:var(--text); border-radius:4px; transition:.5s; }
 @media (max-width: 880px) {
   .nav__toggle { display:flex; }
-  .nav__list { position:fixed; top:72px; right:0; flex-direction:column; align-items:flex-start; padding:2rem clamp(1.2rem,5vw,2.5rem); background:linear-gradient(160deg,#14181f,#0d0f13 80%); width:min(300px,80%); height:calc(100vh - 72px); transform:translateX(100%); transition:.7s var(--ease-out); }
+  .nav__list { position:fixed; top:0; right:0; flex-direction:column; align-items:flex-start; padding:5.5rem clamp(1.4rem,6vw,2.6rem) 3rem; background:linear-gradient(165deg,#14181f,#0d0f13 85%); width:min(320px,82%); height:100vh; transform:translateX(100%); transition:.6s var(--ease-out); box-shadow:-2px 0 18px -4px rgba(0,0,0,.6); backdrop-filter:blur(18px) saturate(160%); }
   .nav__list.open { transform:translateX(0); }
+  body.nav-open { overflow:hidden; }
+  .nav__overlay { position:fixed; inset:0; background:rgba(0,0,0,.4); backdrop-filter:blur(2px); opacity:0; pointer-events:none; transition:.5s; }
+  .nav__overlay.show { opacity:1; pointer-events:auto; }
 }
 
 /* ================= Hero ================= */
@@ -84,10 +87,7 @@ a { color: var(--brand); text-decoration:none; }
 .stat { text-align:center; }
 .stat__num { font-size:2.1rem; font-weight:700; background:var(--gradient-2); -webkit-background-clip:text; background-clip:text; color:transparent; display:block; }
 .stat__label { font-size:.75rem; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); margin-top:.25rem; }
-.scroll-indicator { position:absolute; bottom:1.6rem; left:50%; transform:translateX(-50%); width:32px; height:52px; border:2px solid rgba(255,255,255,.4); border-radius:24px; display:flex; justify-content:center; align-items:flex-start; padding-top:6px; color:var(--text); opacity:.7; transition:.5s; }
-.scroll-indicator__wheel { width:6px; height:10px; border-radius:4px; background:var(--text); animation:wheel 2.2s infinite; }
-@keyframes wheel { 0% { transform:translateY(0); opacity:1;} 70% { opacity:1;} 100% { transform:translateY(20px); opacity:0;} }
-.scroll-indicator:hover { opacity:1; }
+/* Scroll indicator removed */
 
 /* ================= Repairs ================= */
 .repair-grid { --min: 240px; display:grid; grid-template-columns:repeat(auto-fit,minmax(var(--min),1fr)); gap:1.6rem; }
@@ -161,6 +161,17 @@ a { color: var(--brand); text-decoration:none; }
 .wa-fab__ping { position:absolute; inset:0; border-radius:inherit; background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.6),transparent 70%); animation:pulse 2.8s infinite; mix-blend-mode:overlay; pointer-events:none; }
 @keyframes pulse { 0% { transform:scale(0.5); opacity:0;} 35% { opacity:.4;} 100% { transform:scale(1.8); opacity:0;} }
 .wa-fab:hover { transform:translateY(-4px) scale(1.05); }
+
+/* ================= Location Section ================= */
+.location__grid { display:grid; gap:2.5rem; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); align-items:start; }
+.location__info p { margin:1rem 0 1.2rem; font-size:.9rem; color:var(--text-dim); line-height:1.5; }
+.map-embed { position:relative; border:1px solid rgba(255,255,255,.07); border-radius:20px; overflow:hidden; background:#11161c; min-height:340px; box-shadow:var(--shadow-sm); }
+.map-embed iframe { position:absolute; inset:0; width:100%; height:100%; border:0; filter:grayscale(.2) contrast(1.05) brightness(.9); }
+
+@media (max-width:600px){
+  .location__grid { gap:2rem; }
+  .map-embed { min-height:300px; }
+}
 
 /* Cursor removed per request */
 
