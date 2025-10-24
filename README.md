@@ -3,7 +3,7 @@
 Moya’s Company is a simple and modern static website built for a local phone repair and accessories business in Nogales, Sonora, Mexico.
 The website showcases the store’s services, products, repair process, location, and contact information — making it easier for customers to find and connect with the business online.
 
-🌐 Live Demo: https://saithvega.github.io/moyas-company
+🌐 Live Demo: https://saithv.github.io/moyas-company.github.io/
 
 🧾 Overview
 
